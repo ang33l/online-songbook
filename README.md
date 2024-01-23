@@ -22,6 +22,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Stack
 
-Next.js 14 app router
-Convex db
-Clerk auth
+- Next.js 14 app router
+- Convex db
+- Clerk auth
