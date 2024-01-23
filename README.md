@@ -1,4 +1,5 @@
 This is a [Next.js](https://nextjs.org/) songbook project.
+![Alt text](images/image.png)
 
 ## Getting Started
 
