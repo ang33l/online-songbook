@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import NewCategory from "@/components/song/add/newCategory";
 import { toast } from "sonner";
+import ImportJson from "@/components/song/add/importJson";
 
 const formSchema = z.object({
     title: z.string().min(4, { message: "Tytuł musi mieć co najmniej 4 znaki!" }).max(50),
@@ -61,9 +62,9 @@ export default function Page() {
     if (isLoading) return <PageLoading />
     return <div className="w-full">
         <div className="max-w-screen-2xl m-auto px-2 py-3">
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-col sm:flex-row">
                 <h1 className="text-2xl font-bold">Dodaj utwór</h1>
-                <Button variant="default">Dodaj z pliku jsonl</Button>
+                <ImportJson />
                 <NewCategory />
             </div>
             <div className="max-w-xl">

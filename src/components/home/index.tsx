@@ -14,13 +14,13 @@ export default function HomeContent() {
     const [search, setSearch] = useState(searchParams.get("query") || "")
     const { results, status, loadMore } = usePaginatedQuery(
         api.song.getSongsWithFilter, { filter: search, category: category },
-        { initialNumItems: 10 }
+        { initialNumItems: 30 }
     );
 
     const [scroll, scrollTo] = useWindowScroll();
     useEffect(() => {
         if (entry?.isIntersecting) {
-            loadMore(10);
+            loadMore(30);
         }
     }, [scroll.y])
     console.log(search)

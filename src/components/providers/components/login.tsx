@@ -30,8 +30,12 @@ export default function LoginForm({
     }
 
     return (<div className="w-[100dvw] h-[100dvh] flex flex-col items-center justify-center">
-        <div className="border py-12 px-8 rounded-md shadow-sm">
-            <h1 className="text-xl">Zaloguj się do śpiewnika</h1>
+        <div className="border py-4 px-8 rounded-md shadow-sm flex flex-col">
+            <div className="flex flex-col gap-6">
+                <h1 className="text-2xl font-bold">Śpiewnik online</h1>
+                <h2 className="text-xl">Zaloguj się do śpiewnika</h2>
+            </div>
+
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(submitForm)} className="space-y-2">
                     <FormField name="password" control={form.control} render={({ field }) => (

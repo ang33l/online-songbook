@@ -53,10 +53,16 @@ export const addSingleSong = mutation({
     text: v.string(),
   },
   handler: async ({ db }, { title, category, text }) => {
-    const dbCategory = await db
+    let dbCategory;
+    if(category === ""){
+       dbCategory = await db.query("category").filter((q) => q.eq(q.field("label"), "Bez kategorii")).collect();
+    } else {
+       dbCategory = await db
       .query("category")
       .filter((q) => q.eq(q.field("_id"), category))
       .collect();
+    }
+    
     if (!dbCategory[0]) return false;
     return await db.insert("song", {
       title,

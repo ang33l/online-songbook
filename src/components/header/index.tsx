@@ -26,9 +26,11 @@ import { SignInButton, SignOutButton } from "@clerk/clerk-react";
 import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/clerk-react";
 import { usePathname } from 'next/navigation';
+import { useState } from "react";
 
 
 export default function Header() {
+    const [open, setOpen] = useState(false)
     const { user } = useUser()
     const links = useQuery(api.path.getPaths, { user_id: user?.id })
     const path = usePathname();
@@ -39,7 +41,7 @@ export default function Header() {
         <div className="container px-2 flex items-center justify-between max-w-screen-2xl">
             <div className="flex items-center gap-2">
 
-                <Sheet>
+                <Sheet open={open} onOpenChange={setOpen}>
                     <SheetTrigger asChild>
                         <Button variant="ghost" size={"icon"} className="flex md:hidden">
                             <TextAlignJustifyIcon className="h-8 w-8" />
@@ -53,7 +55,7 @@ export default function Header() {
                             <div className="flex flex-col">
                                 {links?.map((link) => (
                                     <Link href={link.link} legacyBehavior passHref key={link.link} >
-                                        <Button variant={path === link.link ? 'secondary' : 'ghost'} className={`${path === link.link && 'font-bold'} justify-start`}>
+                                        <Button variant={path === link.link ? 'secondary' : 'ghost'} className={`${path === link.link && 'font-bold'} justify-start`} onClick={() => setOpen(false)}>
                                             {link.label}
                                         </Button>
                                     </Link>

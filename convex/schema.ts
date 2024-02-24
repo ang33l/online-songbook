@@ -8,11 +8,14 @@ export default defineSchema({
   path: defineTable({
     link: v.string(),
     label: v.string(),
-    admin: v.boolean(),
+    user_type: v.id("user_type"),
   }),
   user: defineTable({
     uid: v.string(),
-    admin: v.boolean(),
+    user_type: v.id("user_type"),
+  }),
+  user_type: defineTable({
+    label: v.string(),
   }),
   song: defineTable({
     title: v.string(),
