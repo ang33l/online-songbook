@@ -23,10 +23,10 @@ export default function HomeContent() {
             loadMore(30);
         }
     }, [scroll.y])
-    console.log(search)
+
     const { ref, entry } = useIntersection();
     return (
-        <div className="container px-2 max-w-screen-2xl flex flex-col gap-2 px-2 py-3">
+        <div className="container max-w-screen-2xl flex flex-col gap-2 px-2 py-3">
             <h1 className="text-2xl font-bold">Znajdź interesujący Cię utwór</h1>
             <Search setSearch={setSearch} setCategory={setCategory} />
             <div className="flex gap-2 flex-col items-start text-xl">

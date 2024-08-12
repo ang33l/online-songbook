@@ -29,7 +29,8 @@ export default function Search(
     const [category, setCategory] = useState(searchParams.get("category") || "")
     const searchRef = useRef<HTMLInputElement>(null)
     const categories = useQuery(api.song.getCategories)
-    const onSubmit = () => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setSearch(searchRef.current?.value || "")
         _setCategory(category)
         const params = new URLSearchParams();
@@ -38,7 +39,7 @@ export default function Search(
         router.push(`/?${params.toString()}`)
     }
     return (
-        <div className="flex flex-col md:flex-row gap-1 max-w-lg">
+        <form className="flex flex-col md:flex-row gap-1 max-w-lg" onSubmit={onSubmit}>
             <Input type="search" placeholder="Wyszukaj..." ref={searchRef} defaultValue={searchParams.get("query") || ""} />
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
@@ -81,7 +82,7 @@ export default function Search(
                     </Command>
                 </PopoverContent>
             </Popover>
-            <Button className="gap-1" onClick={onSubmit}><MagnifyingGlassIcon /> Szukaj </Button>
-        </div>
+            <Button className="gap-1" type="submit"><MagnifyingGlassIcon /> Szukaj </Button>
+        </form>
     )
 }
